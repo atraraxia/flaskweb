@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block header%}
+<ul class="nav navbar-nav navbar-right">
+    <li class="active"><a href="{{ url_for('regist') }}">注册</a></li>
+    <li><a href="{{ url_for('login') }}">登录</a></li>
+</ul>
+{%endblock%}
+{% block content %}
+
+<div class="somr">
+    <h1>注册页面</h1>
+</div>
+
+
+                <form method="post" >
+
+                    <div class="form-group">
+
+                        <label>{{form.name.label}}</label>
+                        <!--<input type="text" name="user_name" id="user_name" >-->
+                        {{form.name}}
+                        {% for err in form.name.errors %}
+                        <p style="color: red">{{ err }}</p>
+                        {% endfor%}
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{form.pwd.label}}</label>
+                        <!--<input type="password" name="pwd" id="pwd" >-->
+                        {{form.pwd}}
+                        {% for err in form.pwd.errors %}
+                        <p style="color: red">{{ err }}</p>
+                        {% endfor%}
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{form.email.label}}</label>
+                        <!--<input type="text" name="email" id="email" >-->
+                        {{form.email}}
+                        {% for err in form.email.errors %}
+                        <p style="color: red">{{ err }}</p>
+                        {% endfor%}
+                    </div>
+
+
+                    <div class="form-group">
+                        <!--<input type="submit" value="注 册" class="btn btn-success",name="submit">-->
+                        {{form.csrf_token}}
+                        {{form.submit}}
+                    </div>
+
+                </form>
+
+{% for message in get_flashed_messages() %}
+<div class="foot">
+
+    <p style="color: red">{{ message }}</p>
+</div>
+{% endfor %}
+{% endblock %}

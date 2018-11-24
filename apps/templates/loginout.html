@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block header%}
+<ul class="nav navbar-nav navbar-right">
+    <li class="active"><a href="{{ url_for('regist') }}">注册</a></li>
+    <li><a href="{{ url_for('login') }}">登录</a></li>
+</ul>
+{%endblock%}
+{% block content %}
+    <div class="somr">
+    <h1>退出成功</h1>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block header%}
+<ul class="nav navbar-nav navbar-right">
+    <li class="active"><a href="{{ url_for('regist') }}">注册</a></li>
+    <li><a href="{{ url_for('login') }}">登录</a></li>
+</ul>
+{%endblock%}
+{% block content %}
+
+<div class="somr">
+    <h1>登录页面</h1>
+
+</div>
+
+
+
+                    <form method="post" >
+                        <div class="form-group">
+                            <label>{{form.name.label}}</label>
+
+                            {{form.name (value=request.args.get("username"))}}
+                            {% for err in form.name.errors %}
+                            <p style="color: red">{{ err }}</p>
+                        {% endfor%}
+                        </div>
+                        <div class="form-group">
+                            <label>{{form.pwd.label}}</label>
+                            {{form.pwd}}
+                            {% for err in form.pwd.errors %}
+                        <p style="color: red">{{ err }}</p>
+                        {% endfor%}
+                        </div>
+
+                        <div class="form-group">
+
+                          <p>{{form.remember_me}}记住我</p>
+
+                        </div>
+
+                        <div class="form-group">
+                        {{form.csrf_token}}
+                        {{form.submit}}
+                        </div>
+                    </form>
+
+{% for message in get_flashed_messages() %}
+<div class="foot">
+
+    <p style="color: red">{{ message }}</p>
+</div>
+{% endfor %}
+{% endblock %}
